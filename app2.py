@@ -5,8 +5,15 @@ import pandas as pd
 import requests
 import pathlib
 
+import gdown
+import os
 
+if not os.path.exists("sim.pkl"):
+    url = "https://drive.google.com/file/d/1tRXFBhX93HEluAyl1GN2NKWxxCSKjlaA/view?usp=sharing"  # <-- replace with your ID
+    gdown.download(url, "sim.pkl", quiet=False)
 
+with open("sim.pkl", "rb") as f:
+    sim = pickle.load(f)
 
 
 
@@ -28,7 +35,7 @@ load_css(css_path)
 ## Actual Model
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
-sim = pickle.load(open('sim.pkl', 'rb'))
+#sim = pickle.load(open('sim.pkl', 'rb'))
 
 def fetch_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US".format(movie_id)
@@ -52,7 +59,7 @@ def rec_movie(movie):
 
 
 st.title("🔮Movie recommenadtion system")
-st.text("by SOMAX07", )
+st.text("by SOMESH BISWAS", )
 selected_movie = st.selectbox(
     "Enter movie name",
     movies['title'].values
