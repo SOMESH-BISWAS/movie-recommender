@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starfield Background</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #starfield-container {
+            position: absolute;
+            top: 0;
+            left: -10%;
+            width: 400%;
+            height: 50%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="starfield-container"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const container = document.getElementById('starfield-container');
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
+        container.appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+
+        const starGeometry = new THREE.BufferGeometry();
+        const starCount = 200000;
+        const starPositions = new Float32Array(starCount * 3);
+        const starColors = new Float32Array(starCount * 3);
+
+        // Assign random cool colors (blue, purple, cyan, magenta)
+        const coolColors = [0x4DEEEA, 0x74EE15, 0xFFE700, 0xFFA500];
+        for (let i = 0; i < starCount * 3; i += 3) {
+            starPositions[i] = (Math.random() - 0.5) * 2000;
+            starPositions[i + 1] = (Math.random() - 0.5) * 2000;
+            starPositions[i + 2] = (Math.random() - 0.5) * 2000;
+            const color = coolColors[Math.floor(Math.random() * coolColors.length)];
+            starColors[i] = ((color >> 16) & 255) / 255;
+            starColors[i + 1] = ((color >> 8) & 255) / 255;
+            starColors[i + 2] = (color & 255) / 255;
+        }
+
+        starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+        starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+        const starMaterial = new THREE.PointsMaterial({
+            vertexColors: true,
+            size: 0.5,
+            transparent: true
+        });
+
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        camera.position.z = 800;
+
+        function animateStars() {
+            requestAnimationFrame(animateStars);
+
+            stars.rotation.y += 0.0005;
+            stars.rotation.x += 0.0002;
+
+            const positions = stars.geometry.attributes.position.array;
+            for (let i = 0; i < positions.length; i += 3) {
+                positions[i + 1] -= 0.05;
+                if (positions[i + 1] < -1000) {
+                    positions[i + 1] = 1000;
+                }
+            }
+            stars.geometry.attributes.position.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+            camera.aspect = container.offsetWidth / container.offsetHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        animateStars();
+    </script>
+</body>
+</html>
