@@ -9,7 +9,7 @@ import gdown
 import os
 
 if not os.path.exists("sim.pkl"):
-    url = "https://drive.google.com/file/d/1tRXFBhX93HEluAyl1GN2NKWxxCSKjlaA/view?usp=sharing"  # <-- replace with your ID
+    url = "https://drive.google.com/uc?export=download&id=1tRXFBhX93HEluAyl1GN2NKWxxCSKjlaA"  # <-- replace with your ID
     gdown.download(url, "sim.pkl", quiet=False)
 
 with open("sim.pkl", "rb") as f:
@@ -218,7 +218,7 @@ html(
       if (typeof tsParticles !== 'undefined') {
          tsParticles.load("particles", {
             particles: {
-               number: { value: 50 },
+               number: { value: 70 },
                color: { value: "#a5b198" },
                shape: { type: "circle" },
                opacity: { value: 0.7 },
