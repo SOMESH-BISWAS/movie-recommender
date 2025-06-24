@@ -5,7 +5,7 @@
 Welcome to my **Streamlit-powered Movie Recommender App**!  
 It suggests similar movies based on the one you select — complete with poster previews and beautiful hover animations.
 
-🔗 **Try the Live App**: [Click here to open]([https://your-app-url.streamlit.app](https://movie-recommender-by-somesh-biswas-bkdvsgyncmg2eayfqxhfqc.streamlit.app/))
+🔗 **Try the Live App**: [Click here to open]([https://your-app-url.streamlit.app](https://movie-recommender-by-somesh-biswas-bkdvsgyncmg2eayfqxhfqc.streamlit.app/)
 
 ---
 
