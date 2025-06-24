@@ -1,5 +1,7 @@
 # 🎬 Movie Recommendation System
 
+**My 1st EVER PROJECT**
+
 Welcome to my **Streamlit-powered Movie Recommender App**!  
 It suggests similar movies based on the one you select — complete with poster previews and beautiful hover animations.
 
