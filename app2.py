@@ -48,7 +48,7 @@ def fetch_poster(movie_id):
 def rec_movie(movie):
     rm = []
     rmp = []
-    for i in sorted(list(enumerate(sim[movies[movies['title'] == movie].index[0]])), reverse = True,  key = lambda x:x[1] )[1:16]:
+    for i in sorted(list(enumerate(sim[movies[movies['title'] == movie].index[0]])), reverse = True,  key = lambda x:x[1] )[1:11]:
         movie_id = movies.iloc[i[0]].movie_id
         rm.append(movies.iloc[i[0]].title)
         rmp.append(fetch_poster(movie_id))
@@ -170,15 +170,6 @@ if st.button('Show Recommendation', key='glow'):
                             <img src="{recommended_movie_posters[i + 5]}" class="poster-img">
                         </div>
                         <div class="poster-title">{recommended_movie_names[i + 5]}</div>
-                    """, unsafe_allow_html=True)
-    cols = st.columns(5)
-    for i in range(5):
-        with cols[i]:
-            st.markdown(f"""
-                        <div class="poster-container">
-                            <img src="{recommended_movie_posters[i + 10]}" class="poster-img">
-                        </div>
-                        <div class="poster-title">{recommended_movie_names[i + 10]}</div>
                     """, unsafe_allow_html=True)
 
     # Close the poster group
