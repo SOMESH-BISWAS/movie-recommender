@@ -9,7 +9,7 @@ import gdown
 import os
 
 if not os.path.exists("sim.pkl"):
-    url = "https://drive.google.com/uc?export=download&id=1tRXFBhX93HEluAyl1GN2NKWxxCSKjlaA"  # <-- replace with your ID
+    url = "https://drive.google.com/file/d/1EBhrlQWMbhkR5bCIZDjRwKlGTliew7Lq/view?usp=sharing"  # <-- replace with your ID
     gdown.download(url, "sim.pkl", quiet=False)
 
 with open("sim.pkl", "rb") as f:
